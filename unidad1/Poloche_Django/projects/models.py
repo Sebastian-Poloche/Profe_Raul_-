@@ -3,7 +3,7 @@ from django.core.validators import RegexValidator
 
 placa_validador = RegexValidator(
         regex=r'^[A-Z]{3}-\d{3}$',
-        message='La placa debe tener el formato AAA-123, solo letras mayúsculas, números y el guion para la separacion de letras y numero.'
+        message='Formato: AAA-123 (3 letras, guión, 3 números)'
     )
 
 # Create your models here.
