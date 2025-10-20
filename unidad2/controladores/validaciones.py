@@ -21,7 +21,7 @@ class Validaciones:
         if VAL_PLACA.match(txt):
             self.errores['placa'].set("")
             return True
-        self.errores['placa'].set("Solo se permiten letras Mayusculas, Minusculas y Números")
+        self.errores['placa'].set("Solo se permiten letras Mayusculas y Números")
         return False
 
     def val_valor_cargue(self) -> bool:
