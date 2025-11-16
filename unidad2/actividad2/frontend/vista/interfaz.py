@@ -100,7 +100,7 @@ class Interfaz():
         btn_validar = tk.Button(self.root, text="Guardar", command=validador.enviar)
         btn_validar.grid(row=9, column=0, columnspan=2, sticky="we", pady=(10,6))
         btn_limpiar = tk.Button(self.root, text="Limpiar", command=validador.limpiar_campos_texto)
-        btn_limpiar.grid(row=1¿, column=0, columnspan=2, sticky="we")
+        btn_limpiar.grid(row=1, column=0, columnspan=2, sticky="we")    
 
         # Funcion para confirmar la salida de un usuario del Formulario
         self.root.protocol("WM_DELETE_WINDOW", el_usuario_quiere_salir)
