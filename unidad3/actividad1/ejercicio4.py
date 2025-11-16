@@ -1,4 +1,3 @@
-# JHOONY WAS HERE
 """
 4) Pipeline productor-consumidor (clases + Queue)
 Objetivo: comunicar hilos mediante Queue.
