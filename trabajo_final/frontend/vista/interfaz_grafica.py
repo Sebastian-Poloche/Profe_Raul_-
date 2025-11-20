@@ -5,6 +5,7 @@ import threading
 import time
 from datetime import datetime
 
+
 root = tk.Tk()
 root.title("IHEP - Inventario de Herramientas y Préstamos")
 root.geometry("1200x720")
@@ -24,13 +25,16 @@ header.pack(fill="x")
 header.pack_propagate(False)
 
 tk.Label(header, text="IHEP - Inventario de Herramientas y Préstamos",
-         fg="white", bg="#0078d7", font=("Segoe UI", 16, "bold")).pack(side="left", padx=20, pady=10)
+fg="white", bg="#0078d7", font=("Segoe UI", 16, "bold")).pack(side="left", padx=20, pady=10)
 
 info_frame = tk.Frame(header, bg="#0078d7")
 info_frame.pack(side="right", padx=20)
 
-tk.Label(info_frame, text="Conectado", fg="#90ee90", bg="#0078d7", font=("Segoe UI", 10)).pack(side="left", padx=10)
-backup_label = tk.Label(info_frame, text="Respaldo: 05:00", fg="#ffff99", bg="#0078d7", font=("Segoe UI", 9))
+tk.Label(info_frame, text="Conectado", fg="#90ee90", bg="#0078d7",
+font=("Segoe UI", 10)).pack(side="left", padx=10)
+
+backup_label = tk.Label(info_frame, text="Respaldo: 05:00",
+fg="#ffff99", bg="#0078d7", font=("Segoe UI", 9))
 backup_label.pack(side="left")
 
 def actualizar_reloj():
@@ -73,7 +77,7 @@ tabla_herr = ttk.LabelFrame(tab_herramientas, text="Lista de Herramientas")
 tabla_herr.pack(fill="both", expand=True, padx=5, pady=5)
 
 tree_herr = ttk.Treeview(tabla_herr, columns=("c","n","cat","u","e"), show="headings")
-for col, text in zip(("c","n","cat","u","e"), ("Código","Nombre","Categoría","Ubicación","Estado")):
+for col, text in zip(("c","n","cat","u","e"), ("Codigo","Nombre","Categoría","Ubicacion","Estado")):
     tree_herr.heading(col, text=text)
     tree_herr.column(col, width=150, anchor="center")
 tree_herr.pack(fill="both", expand=True)
@@ -116,6 +120,8 @@ btns_tabla_pres.pack(pady=5)
 ttk.Button(btns_tabla_pres, text="Cargar").pack(side="left", padx=3)
 ttk.Button(btns_tabla_pres, text="Editar").pack(side="left", padx=3)
 ttk.Button(btns_tabla_pres, text="Eliminar").pack(side="left", padx=3)
+ttk.Button(btns_tabla_pres, text="Nuevo Prestamo").pack(side="left", padx=3)
+ttk.Button(btns_tabla_pres, text="Registrar Devolucion").pack(side="left", padx=3)
 
 busq_frame = ttk.LabelFrame(tab_busqueda, text="Busqueda Global")
 busq_frame.pack(fill="x", padx=5, pady=5)
