@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views.herramientas_views import Herramientas_ViewSet
+from .views.prestamos_views import Prestamos_ViewSet
 
 
 router = DefaultRouter()
 router.register(r'herramientas', Herramientas_ViewSet, basename='herramientas')
+router.register(r'prestamos', Prestamos_ViewSet, basename='prestamos')
 
 app_name = 'api'
 
