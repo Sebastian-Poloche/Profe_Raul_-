@@ -10,11 +10,11 @@ root = tk.Tk()
 root.title("IHEP - Inventario de Herramientas y Préstamos")
 root.geometry("1200x720")
 root.minsize(1000, 600)
-root.configure(bg="#f0f0f0")
+root.configure(bg="#C9E5F2")
 
 style = ttk.Style()
 style.theme_use("clam")
-style.configure("TNotebook", background="#f0f0f0")
+style.configure("TNotebook", background="#98D0EB")
 style.configure("TNotebook.Tab", padding=[15, 8], font=("Segoe UI", 11, "bold"))
 style.map("TNotebook.Tab",
           background=[("selected", "#0078d7"), ("active", "#e1f5fe")],
@@ -140,7 +140,8 @@ ttk.Button(busq_frame, text="Buscar").grid(row=0, column=4, padx=5)
 tree_busq = ttk.Treeview(tab_busqueda, show="headings")
 tree_busq.pack(fill="both", expand=True, padx=5, pady=5)
 
-footer = tk.Frame(root, bg="#2d2d2d", height=30)
+footer = tk.Frame(root, bg=
+"#2d2d2d", height=30)
 footer.pack(fill="x")
 footer.pack_propagate(False)
 
