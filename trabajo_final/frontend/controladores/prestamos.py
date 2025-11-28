@@ -1,10 +1,10 @@
-from .api_cliente import APICliente
+from .api_cliente import APIClient
 
 
 class PrestamoModel:
 
     def __init__(self):
-        self.api = APICliente()
+        self.api = APIClient()
 
     def listar(self):
         return self.api.get("prestamos/")

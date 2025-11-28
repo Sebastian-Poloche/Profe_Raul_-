@@ -49,79 +49,79 @@ actualizar_reloj()
 notebook = ttk.Notebook(root)
 notebook.pack(fill="both", expand=True, padx=15, pady=15)
 
-tab_herramientas = ttk.Frame(notebook)
+tab_herramienta = ttk.Frame(notebook)
 tab_prestamos = ttk.Frame(notebook)
 tab_busqueda = ttk.Frame(notebook)
 
-notebook.add(tab_herramientas, text="Herramientas")
+notebook.add(tab_herramienta, text="Herramientas")
 notebook.add(tab_prestamos, text="Préstamos")
 notebook.add(tab_busqueda, text="Búsqueda")
 
-form_herr = ttk.LabelFrame(tab_herramientas, text="Registro / Edición de Herramienta")
-form_herr.pack(fill="x", padx=5, pady=5)
+form_herramienta = ttk.LabelFrame(tab_herramienta, text="Registro / Edición de Herramienta")
+form_herramienta.pack(fill="x", padx=5, pady=5)
 
-campos_herr = [("Código:", "codigo"), ("Nombre:", "nombre"), ("Categoría:", "categoria"), ("Ubicación:", "ubicacion"), ("Estado:", "estado")]
-entradas_herr = {}
-for i, (label, key) in enumerate(campos_herr):
-    ttk.Label(form_herr, text=label).grid(row=i, column=0, padx=5, pady=3, sticky="e")
-    entry = ttk.Entry(form_herr, width=50)
+campos_herramienta = [("Código:", "codigo"), ("Nombre:", "nombre"), ("Categoría:", "categoria"), ("Ubicación:", "ubicacion"), ("Estado:", "estado")]
+entradas_herramienta = {}
+for i, (label, key) in enumerate(campos_herramienta):
+    ttk.Label(form_herramienta, text=label).grid(row=i, column=0, padx=5, pady=3, sticky="e")
+    entry = ttk.Entry(form_herramienta, width=50)
     entry.grid(row=i, column=1, padx=5, pady=3)
-    entradas_herr[key] = entry
+    entradas_herramienta[key] = entry
 
-btns_herr = ttk.Frame(form_herr)
-btns_herr.grid(row=5, column=0, columnspan=2, pady=10)
-ttk.Button(btns_herr, text="Guardar").pack(side="left", padx=5)
-ttk.Button(btns_herr, text="Limpiar").pack(side="left", padx=5)
+btns_herramienta = ttk.Frame(form_herramienta)
+btns_herramienta.grid(row=5, column=0, columnspan=2, pady=10)
+ttk.Button(btns_herramienta, text="Guardar").pack(side="left", padx=5)
+ttk.Button(btns_herramienta, text="Limpiar").pack(side="left", padx=5)
 
-tabla_herr = ttk.LabelFrame(tab_herramientas, text="Lista de Herramientas")
-tabla_herr.pack(fill="both", expand=True, padx=5, pady=5)
+tabla_herramienta = ttk.LabelFrame(tab_herramienta, text="Lista de Herramientas")
+tabla_herramienta.pack(fill="both", expand=True, padx=5, pady=5)
 
-tree_herr = ttk.Treeview(tabla_herr, columns=("c","n","cat","u","e"), show="headings")
+tree_herramienta = ttk.Treeview(tabla_herramienta, columns=("c","n","cat","u","e"), show="headings")
 for col, text in zip(("c","n","cat","u","e"), ("Codigo","Nombre","Categoría","Ubicacion","Estado")):
-    tree_herr.heading(col, text=text)
-    tree_herr.column(col, width=150, anchor="center")
-tree_herr.pack(fill="both", expand=True)
+    tree_herramienta.heading(col, text=text)
+    tree_herramienta.column(col, width=150, anchor="center")
+tree_herramienta.pack(fill="both", expand=True)
 
-btns_tabla_herr = ttk.Frame(tabla_herr)
-btns_tabla_herr.pack(pady=5)
-ttk.Button(btns_tabla_herr, text="Cargar").pack(side="left", padx=3)
-ttk.Button(btns_tabla_herr, text="Editar").pack(side="left", padx=3)
-ttk.Button(btns_tabla_herr, text="Eliminar").pack(side="left", padx=3)
+btns_tabla_herramienta = ttk.Frame(tabla_herramienta)
+btns_tabla_herramienta.pack(pady=5)
+ttk.Button(btns_tabla_herramienta, text="Cargar").pack(side="left", padx=3)
+ttk.Button(btns_tabla_herramienta, text="Editar").pack(side="left", padx=3)
+ttk.Button(btns_tabla_herramienta, text="Eliminar").pack(side="left", padx=3)
 
-form_pres = ttk.LabelFrame(tab_prestamos, text="Registro / Edición de Préstamo")
-form_pres.pack(fill="x", padx=5, pady=5)
+form_prestamo = ttk.LabelFrame(tab_prestamos, text="Registro / Edición de Préstamo")
+form_prestamo.pack(fill="x", padx=5, pady=5)
 
-campos_pres = [("Número:", "numero"), ("Código Herramienta:", "herramienta_codigo"), ("Responsable:", "responsable"),
+campos_prestamo = [("Número:", "numero"), ("Código Herramienta:", "herramienta_codigo"), ("Responsable:", "responsable"),
                ("Fecha Salida (YYYY-MM-DD):", "fecha_salida"), ("Fecha Esperada (YYYY-MM-DD):", "fecha_esperada"),
                ("Fecha Devolución (YYYY-MM-DD):", "fecha_devolucion")]
-entradas_pres = {}
-for i, (label, key) in enumerate(campos_pres):
-    ttk.Label(form_pres, text=label).grid(row=i, column=0, padx=5, pady=3, sticky="e")
-    entry = ttk.Entry(form_pres, width=50)
+entradas_prestamo = {}
+for i, (label, key) in enumerate(campos_prestamo):
+    ttk.Label(form_prestamo, text=label).grid(row=i, column=0, padx=5, pady=3, sticky="e")
+    entry = ttk.Entry(form_prestamo, width=50)
     entry.grid(row=i, column=1, padx=5, pady=3)
-    entradas_pres[key] = entry
+    entradas_prestamo[key] = entry
 
-btns_pres = ttk.Frame(form_pres)
-btns_pres.grid(row=6, column=0, columnspan=2, pady=10)
-ttk.Button(btns_pres, text="Guardar").pack(side="left", padx=5)
-ttk.Button(btns_pres, text="Limpiar").pack(side="left", padx=5)
+btns_prestamo = ttk.Frame(form_prestamo)
+btns_prestamo.grid(row=6, column=0, columnspan=2, pady=10)
+ttk.Button(btns_prestamo, text="Guardar").pack(side="left", padx=5)
+ttk.Button(btns_prestamo, text="Limpiar").pack(side="left", padx=5)
 
-tabla_pres = ttk.LabelFrame(tab_prestamos, text="Lista de Préstamos")
-tabla_pres.pack(fill="both", expand=True, padx=5, pady=5)
+tabla_prestamo = ttk.LabelFrame(tab_prestamos, text="Lista de Préstamos")
+tabla_prestamo.pack(fill="both", expand=True, padx=5, pady=5)
 
-tree_pres = ttk.Treeview(tabla_pres, columns=("n","c","r","fs","fe","fd"), show="headings")
+tree_prestamo = ttk.Treeview(tabla_prestamo, columns=("n","c","r","fs","fe","fd"), show="headings")
 for col, text in zip(("n","c","r","fs","fe","fd"), ("Numero","Cod. Herr.","Responsable","Salida","Esperada","Devolucion")):
-    tree_pres.heading(col, text=text)
-    tree_pres.column(col, width=140, anchor="center")
-tree_pres.pack(fill="both", expand=True)
+    tree_prestamo.heading(col, text=text)
+    tree_prestamo.column(col, width=140, anchor="center")
+tree_prestamo.pack(fill="both", expand=True)
 
-btns_tabla_pres = ttk.Frame(tabla_pres)
-btns_tabla_pres.pack(pady=5)
-ttk.Button(btns_tabla_pres, text="Cargar").pack(side="left", padx=3)
-ttk.Button(btns_tabla_pres, text="Editar").pack(side="left", padx=3)
-ttk.Button(btns_tabla_pres, text="Eliminar").pack(side="left", padx=3)
-ttk.Button(btns_tabla_pres, text="Nuevo Prestamo").pack(side="left", padx=3)
-ttk.Button(btns_tabla_pres, text="Registrar Devolucion").pack(side="left", padx=3)
+btns_tabla_prestamo = ttk.Frame(tabla_prestamo)
+btns_tabla_prestamo.pack(pady=5)
+ttk.Button(btns_tabla_prestamo, text="Cargar").pack(side="left", padx=3)
+ttk.Button(btns_tabla_prestamo, text="Editar").pack(side="left", padx=3)
+ttk.Button(btns_tabla_prestamo, text="Eliminar").pack(side="left", padx=3)
+ttk.Button(btns_tabla_prestamo, text="Nuevo Prestamo").pack(side="left", padx=3)
+ttk.Button(btns_tabla_prestamo, text="Registrar Devolucion").pack(side="left", padx=3)
 
 busq_frame = ttk.LabelFrame(tab_busqueda, text="Busqueda Global")
 busq_frame.pack(fill="x", padx=5, pady=5)
@@ -137,8 +137,8 @@ termino_entry.grid(row=0, column=3, padx=5)
 
 ttk.Button(busq_frame, text="Buscar").grid(row=0, column=4, padx=5)
 
-tree_busq = ttk.Treeview(tab_busqueda, show="headings")
-tree_busq.pack(fill="both", expand=True, padx=5, pady=5)
+tree_busqueda = ttk.Treeview(tab_busqueda, show="headings")
+tree_busqueda.pack(fill="both", expand=True, padx=5, pady=5)
 
 footer = tk.Frame(root, bg=
 "#2d2d2d", height=30)

@@ -1,8 +1,3 @@
-""" Módulo de Herramientas - - - 
-Registro, edición, consulta y eliminación de herramientas. 
-Campos mínimos: código, nombre, categoría, ubicación, estado, created_at, updated_at. 
-Borrado físico (eliminación permanente)."""
-
 from .api_cliente import APIClient
 
 
