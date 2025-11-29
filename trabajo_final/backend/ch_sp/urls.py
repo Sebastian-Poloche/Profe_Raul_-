@@ -19,7 +19,6 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views.herramientas_views import Herramientas_ViewSet
 from .views.prestamos_views import Prestamos_ViewSet
-from .views.home_views import home
 
 
 router = DefaultRouter()
@@ -30,6 +29,5 @@ app_name = 'api'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),  # Página de inicio personalizada
-    path('api/', include(router.urls)),  # Endpoints de la API
+    path('', include(router.urls)),
 ]
