@@ -1,0 +1,39 @@
+{
+  "timestamp": "2025-11-29T19:06:05.226900",
+  "herramientas": [
+    {
+      "id": 1,
+      "codigo": "12",
+      "nombre": "martillo",
+      "categoria": "Enviar",
+      "ubicacion": "Polonia",
+      "estado": "Disponible",
+      "created_at": "2025-11-29T19:57:51.568230Z",
+      "updated_at": "2025-11-29T19:57:51.568321Z"
+    }
+  ],
+  "prestamos": [
+    {
+      "id": 1,
+      "numero": "0001",
+      "herramienta_codigo": "12345",
+      "responsable": "Chata",
+      "fecha_salida": "2025-11-29",
+      "fecha_esperada": "2025-12-31",
+      "fecha_devolucion": "2025-12-12",
+      "created_at": "2025-11-29T20:14:51.013213Z",
+      "updated_at": "2025-11-29T20:14:51.013253Z"
+    },
+    {
+      "id": 2,
+      "numero": "0001",
+      "herramienta_codigo": "12345",
+      "responsable": "Chata",
+      "fecha_salida": "2025-11-29",
+      "fecha_esperada": "2025-12-31",
+      "fecha_devolucion": "2025-12-12",
+      "created_at": "2025-11-29T20:16:30.325412Z",
+      "updated_at": "2025-11-29T20:16:30.325426Z"
+    }
+  ]
+}

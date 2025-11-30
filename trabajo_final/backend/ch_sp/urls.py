@@ -17,8 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views.herramientas_views import Herramientas_ViewSet
-from .views.prestamos_views import Prestamos_ViewSet
+from api.views.herramientas_views import Herramientas_ViewSet
+from api.views.prestamos_views import Prestamos_ViewSet
 
 
 router = DefaultRouter()
@@ -29,5 +29,5 @@ app_name = 'api'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]

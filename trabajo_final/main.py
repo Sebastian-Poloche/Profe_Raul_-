@@ -1,4 +1,8 @@
-from frontend.vista.interfaz_grafica import Interfaz_grafica
+import tkinter as tk
+from frontend.vista.interfaz_grafica import InterfazIHEP
 
 if __name__ == "__main__":
-    Interfaz_grafica()
+    root = tk.Tk()
+    app = InterfazIHEP(root)
+    root.mainloop()
+
