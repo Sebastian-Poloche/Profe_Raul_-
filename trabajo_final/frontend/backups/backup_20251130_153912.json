@@ -1,0 +1,49 @@
+{
+  "timestamp": "2025-11-30T15:39:12.234957",
+  "herramientas": [
+    {
+      "id": 2,
+      "codigo": "004",
+      "nombre": "llave inglesa",
+      "categoria": "Enviar",
+      "ubicacion": "bogota",
+      "estado": "Disponible",
+      "created_at": "2025-11-30T00:06:30.745815Z",
+      "updated_at": "2025-11-30T00:06:30.745842Z"
+    },
+    {
+      "id": 3,
+      "codigo": "0834",
+      "nombre": "chatarra oxidada",
+      "categoria": "Enviar",
+      "ubicacion": "caicerroña",
+      "estado": "Disponible",
+      "created_at": "2025-11-30T20:35:50.583467Z",
+      "updated_at": "2025-11-30T20:35:50.583499Z"
+    }
+  ],
+  "prestamos": [
+    {
+      "id": 1,
+      "numero": "0001",
+      "herramienta_codigo": "12345",
+      "responsable": "Chata",
+      "fecha_salida": "2025-11-29",
+      "fecha_esperada": "2025-12-31",
+      "fecha_devolucion": "2025-12-12",
+      "created_at": "2025-11-29T20:14:51.013213Z",
+      "updated_at": "2025-11-29T20:14:51.013253Z"
+    },
+    {
+      "id": 2,
+      "numero": "0001",
+      "herramienta_codigo": "12345",
+      "responsable": "Chata",
+      "fecha_salida": "2025-11-29",
+      "fecha_esperada": "2025-12-31",
+      "fecha_devolucion": "2025-12-12",
+      "created_at": "2025-11-29T20:16:30.325412Z",
+      "updated_at": "2025-11-29T20:16:30.325426Z"
+    }
+  ]
+}

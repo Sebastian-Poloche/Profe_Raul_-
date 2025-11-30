@@ -70,6 +70,10 @@ class InterfazIHEP:
         self.notebook.add(self.tab_prestamos, text="Préstamos")
         self._crear_tab_prestamos()
         
+        # Tab Búsqueda
+        self.tab_busqueda = ttk.Frame(self.notebook)
+        self.notebook.add(self.tab_busqueda, text="Búsqueda")
+        self._crear_tab_busqueda()
         
         footer = tk.Frame(self.root, bg="#2d2d2d", height=30)
         footer.pack(fill="x")
@@ -104,9 +108,11 @@ class InterfazIHEP:
             self.entradas_herramienta[key] = entry
         
         btns_herramienta = ttk.Frame(form_herramienta)
-        btns_herramienta.grid(row=5, column=0, columnspan=2, pady=10)
-        ttk.Button(btns_herramienta, text="Guardar", command=self.guardar_herramienta).pack(side="left", padx=5)
-        ttk.Button(btns_herramienta, text="Limpiar", command=self.limpiar_herramienta).pack(side="left", padx=5)
+        btns_herramienta.grid(row=5, column=0, columnspan=2, pady=15, sticky="ew")
+        ttk.Button(btns_herramienta, text="Guardar", command=self.guardar_herramienta, width=20).pack(side="left", padx=10, pady=8)
+        ttk.Button(btns_herramienta, text="Limpiar", command=self.limpiar_herramienta, width=20).pack(side="left", padx=10, pady=8)
+        ttk.Button(btns_herramienta, text="Editar Seleccionado", command=self.editar_herramienta, width=20).pack(side="left", padx=10, pady=8)
+        ttk.Button(btns_herramienta, text="Eliminar Seleccionado", command=self.eliminar_herramienta, width=20).pack(side="left", padx=10, pady=8)
         
         tabla_herramienta = ttk.LabelFrame(self.tab_herramienta, text="Lista de Herramientas")
         tabla_herramienta.pack(fill="both", expand=True, padx=5, pady=5)
@@ -120,11 +126,6 @@ class InterfazIHEP:
         
         self.tree_herramienta.pack(fill="both", expand=True)
         self.tree_herramienta.bind("<ButtonRelease-1>", self._seleccionar_herramienta)
-        
-        btns_tabla_herramienta = ttk.Frame(tabla_herramienta)
-        btns_tabla_herramienta.pack(pady=5)
-        ttk.Button(btns_tabla_herramienta, text="Editar", command=self.editar_herramienta).pack(side="left", padx=3)
-        ttk.Button(btns_tabla_herramienta, text="Eliminar", command=self.eliminar_herramienta).pack(side="left", padx=3)
         
     def _crear_tab_prestamos(self):
         form_prestamo = ttk.LabelFrame(self.tab_prestamos, text="Registro / Edición de Préstamo")
@@ -143,10 +144,12 @@ class InterfazIHEP:
             self.entradas_prestamo[key] = entry
         
         btns_prestamo = ttk.Frame(form_prestamo)
-        btns_prestamo.grid(row=6, column=0, columnspan=2, pady=10)
-        ttk.Button(btns_prestamo, text="Guardar", command=self.guardar_prestamo).pack(side="left", padx=5)
-        ttk.Button(btns_prestamo, text="Limpiar", command=self.limpiar_prestamo).pack(side="left", padx=5)
-        ttk.Button(btns_prestamo, text="Registrar Devolución", command=self.registrar_devolucion).pack(side="left", padx=5)
+        btns_prestamo.grid(row=6, column=0, columnspan=2, pady=15, sticky="ew")
+        ttk.Button(btns_prestamo, text="Guardar", command=self.guardar_prestamo, width=20).pack(side="left", padx=10, pady=8)
+        ttk.Button(btns_prestamo, text="Limpiar", command=self.limpiar_prestamo, width=20).pack(side="left", padx=10, pady=8)
+        ttk.Button(btns_prestamo, text="Registrar Devolución", command=self.registrar_devolucion, width=22).pack(side="left", padx=10, pady=8)
+        ttk.Button(btns_prestamo, text="Editar Seleccionado", command=self.editar_prestamo, width=20).pack(side="left", padx=10, pady=8)
+        ttk.Button(btns_prestamo, text="Eliminar Seleccionado", command=self.eliminar_prestamo, width=20).pack(side="left", padx=10, pady=8)
         
         tabla_prestamo = ttk.LabelFrame(self.tab_prestamos, text="Lista de Préstamos")
         tabla_prestamo.pack(fill="both", expand=True, padx=5, pady=5)
@@ -161,10 +164,139 @@ class InterfazIHEP:
         self.tree_prestamo.pack(fill="both", expand=True)
         self.tree_prestamo.bind("<ButtonRelease-1>", self._seleccionar_prestamo)
         
-        btns_tabla_prestamo = ttk.Frame(tabla_prestamo)
-        btns_tabla_prestamo.pack(pady=5)
-        ttk.Button(btns_tabla_prestamo, text="Editar", command=self.editar_prestamo).pack(side="left", padx=3)
-        ttk.Button(btns_tabla_prestamo, text="Eliminar", command=self.eliminar_prestamo).pack(side="left", padx=3)
+    def _crear_tab_busqueda(self):
+        """Crear tab de búsqueda con filtros para herramientas y préstamos"""
+        filtros_frame = ttk.LabelFrame(self.tab_busqueda, text="Filtros de Búsqueda")
+        filtros_frame.pack(fill="x", padx=5, pady=5)
+        
+        # Tipo de búsqueda
+        ttk.Label(filtros_frame, text="Buscar en:").grid(row=0, column=0, padx=5, pady=5, sticky="e")
+        self.tipo_busqueda = tk.StringVar(value="Herramientas")
+        tipo_combo = ttk.Combobox(filtros_frame, textvariable=self.tipo_busqueda, 
+                                  values=["Herramientas", "Préstamos"], state="readonly", width=30)
+        tipo_combo.grid(row=0, column=1, padx=5, pady=5)
+        tipo_combo.bind("<<ComboboxSelected>>", lambda e: self._actualizar_campos_busqueda())
+        
+        # Campo de búsqueda dinámico
+        ttk.Label(filtros_frame, text="Campo:").grid(row=0, column=2, padx=5, pady=5, sticky="e")
+        self.campo_busqueda = tk.StringVar(value="codigo")
+        self.campo_combo = ttk.Combobox(filtros_frame, textvariable=self.campo_busqueda, 
+                                        values=["codigo", "nombre"], state="readonly", width=20)
+        self.campo_combo.grid(row=0, column=3, padx=5, pady=5)
+        
+        # Término de búsqueda
+        ttk.Label(filtros_frame, text="Término:").grid(row=1, column=0, padx=5, pady=5, sticky="e")
+        self.termino_busqueda = tk.StringVar()
+        ttk.Entry(filtros_frame, textvariable=self.termino_busqueda, width=35).grid(row=1, column=1, padx=5, pady=5)
+        
+        # Botones
+        btns_busqueda = ttk.Frame(filtros_frame)
+        btns_busqueda.grid(row=1, column=2, columnspan=2, padx=5, pady=5)
+        ttk.Button(btns_busqueda, text="Buscar", command=self._ejecutar_busqueda, width=12).pack(side="left", padx=4, pady=5)
+        ttk.Button(btns_busqueda, text="Limpiar", command=self._limpiar_busqueda, width=12).pack(side="left", padx=4, pady=5)
+        
+        # Resultados
+        resultados_frame = ttk.LabelFrame(self.tab_busqueda, text="Resultados de la Búsqueda")
+        resultados_frame.pack(fill="both", expand=True, padx=5, pady=5)
+        
+        self.tree_busqueda = ttk.Treeview(resultados_frame, show="headings", height=15)
+        self.tree_busqueda.pack(fill="both", expand=True)
+        
+        # Scrollbar
+        scrollbar = ttk.Scrollbar(resultados_frame, orient="vertical", command=self.tree_busqueda.yview)
+        scrollbar.pack(side="right", fill="y")
+        self.tree_busqueda.config(yscroll=scrollbar.set)
+        
+    def _actualizar_campos_busqueda(self):
+        """Actualizar campos disponibles según el tipo de búsqueda"""
+        tipo = self.tipo_busqueda.get()
+        if tipo == "Herramientas":
+            self.campo_combo.config(values=["codigo", "nombre", "categoria", "ubicacion"])
+            self.campo_busqueda.set("codigo")
+        else:  # Préstamos
+            self.campo_combo.config(values=["numero", "responsable", "herramienta_codigo"])
+            self.campo_busqueda.set("numero")
+    
+    def _ejecutar_busqueda(self):
+        """Ejecutar búsqueda según filtros seleccionados"""
+        tipo = self.tipo_busqueda.get()
+        campo = self.campo_busqueda.get()
+        termino = self.termino_busqueda.get().lower()
+        
+        if not termino:
+            messagebox.showwarning("Advertencia", "Ingrese un término de búsqueda")
+            return
+        
+        # Limpiar tabla
+        for item in self.tree_busqueda.get_children():
+            self.tree_busqueda.delete(item)
+        
+        threading.Thread(target=self._buscar_en_api, args=(tipo, campo, termino), daemon=True).start()
+    
+    def _buscar_en_api(self, tipo, campo, termino):
+        """Buscar en la API y mostrar resultados"""
+        try:
+            if tipo == "Herramientas":
+                data, error = self.api.get("herramientas/")
+                if error or not data:
+                    messagebox.showerror("Error", "No se pudo obtener datos")
+                    return
+                
+                # Configurar columnas
+                self.tree_busqueda.config(columns=("id","c","n","cat","u","e"))
+                for col in ("id","c","n","cat","u","e"):
+                    self.tree_busqueda.heading(col, text=col.upper())
+                
+                # Filtrar resultados
+                for h in data:
+                    valor = str(h.get(campo, "")).lower()
+                    if termino in valor:
+                        self.tree_busqueda.insert("", "end", values=(
+                            h.get("id", ""),
+                            h.get("codigo", ""),
+                            h.get("nombre", ""),
+                            h.get("categoria", ""),
+                            h.get("ubicacion", ""),
+                            h.get("estado", "")
+                        ))
+                
+                if not self.tree_busqueda.get_children():
+                    messagebox.showinfo("Búsqueda", "No se encontraron resultados")
+            else:  # Préstamos
+                data, error = self.api.get("prestamos/")
+                if error or not data:
+                    messagebox.showerror("Error", "No se pudo obtener datos")
+                    return
+                
+                # Configurar columnas
+                self.tree_busqueda.config(columns=("id","n","c","r","fs","fe","fd"))
+                for col in ("id","n","c","r","fs","fe","fd"):
+                    self.tree_busqueda.heading(col, text=col.upper())
+                
+                # Filtrar resultados
+                for p in data:
+                    valor = str(p.get(campo, "")).lower()
+                    if termino in valor:
+                        self.tree_busqueda.insert("", "end", values=(
+                            p.get("id", ""),
+                            p.get("numero", ""),
+                            p.get("herramienta_codigo", ""),
+                            p.get("responsable", ""),
+                            p.get("fecha_salida", ""),
+                            p.get("fecha_esperada", ""),
+                            p.get("fecha_devolucion", "")
+                        ))
+                
+                if not self.tree_busqueda.get_children():
+                    messagebox.showinfo("Búsqueda", "No se encontraron resultados")
+        except Exception as e:
+            messagebox.showerror("Error", f"Error en búsqueda: {str(e)}")
+    
+    def _limpiar_busqueda(self):
+        """Limpiar campos de búsqueda y resultados"""
+        self.termino_busqueda.set("")
+        for item in self.tree_busqueda.get_children():
+            self.tree_busqueda.delete(item)
         
     def _cargar_datos_iniciales(self):
         threading.Thread(target=self._cargar_herramientas, daemon=True).start()
@@ -315,18 +447,49 @@ class InterfazIHEP:
                 
     def guardar_prestamo(self):
         try:
-            data = {
-                "numero": self.entradas_prestamo["numero"].get(),
-                "herramienta_codigo": self.entradas_prestamo["herramienta_codigo"].get(),
-                "responsable": self.entradas_prestamo["responsable"].get(),
-                "fecha_salida": self.entradas_prestamo["fecha_salida"].get() or None,
-                "fecha_esperada": self.entradas_prestamo["fecha_esperada"].get() or None,
-                "fecha_devolucion": self.entradas_prestamo["fecha_devolucion"].get() or None,
-            }
+            # Obtener datos del formulario
+            numero = self.entradas_prestamo["numero"].get().strip()
+            herramienta_codigo = self.entradas_prestamo["herramienta_codigo"].get().strip()
+            responsable = self.entradas_prestamo["responsable"].get().strip()
+            fecha_salida = self.entradas_prestamo["fecha_salida"].get().strip()
+            fecha_esperada = self.entradas_prestamo["fecha_esperada"].get().strip()
+            fecha_devolucion = self.entradas_prestamo["fecha_devolucion"].get().strip()
             
-            if not data["numero"] or not data["herramienta_codigo"] or not data["responsable"]:
+            # Validaciones básicas
+            if not numero or not herramienta_codigo or not responsable:
                 messagebox.showerror("Error", "Número, herramienta y responsable son obligatorios")
                 return
+            
+            if not fecha_salida:
+                messagebox.showerror("Error", "La fecha de salida es obligatoria")
+                return
+            
+            # Validar formato de fechas (YYYY-MM-DD)
+            for campo, valor in [("Salida", fecha_salida), ("Esperada", fecha_esperada)]:
+                if valor:
+                    try:
+                        from datetime import datetime
+                        datetime.strptime(valor, "%Y-%m-%d")
+                    except ValueError:
+                        messagebox.showerror("Error", f"Fecha {campo} debe estar en formato YYYY-MM-DD")
+                        return
+            
+            # Validar que la herramienta existe
+            herramientas, _ = self.api.get("herramientas/")
+            herramineta_existe = any(h.get("codigo") == herramienta_codigo for h in (herramientas or []))
+            if not herramineta_existe:
+                messagebox.showerror("Error", f"Herramienta con código '{herramienta_codigo}' no existe")
+                return
+            
+            # Construir datos para enviar
+            data = {
+                "numero": numero,
+                "herramienta_codigo": herramienta_codigo,
+                "responsable": responsable,
+                "fecha_salida": fecha_salida if fecha_salida else None,
+                "fecha_esperada": fecha_esperada if fecha_esperada else None,
+                "fecha_devolucion": fecha_devolucion if fecha_devolucion else None,
+            }
             
             if self.selected_loan:
                 result, error = self.api.put(f"prestamos/{self.selected_loan}/", data)

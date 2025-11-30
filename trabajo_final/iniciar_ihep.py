@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """
 Script para iniciar el sistema IHEP completo
 Inicia Backend y Frontend en paralelo

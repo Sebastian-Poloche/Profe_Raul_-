@@ -1,15 +1,25 @@
 {
-  "timestamp": "2025-11-29T16:44:41.742116",
+  "timestamp": "2025-11-30T15:45:01.822658",
   "herramientas": [
     {
-      "id": 1,
-      "codigo": "12",
-      "nombre": "martillo",
+      "id": 2,
+      "codigo": "004",
+      "nombre": "llave inglesa",
       "categoria": "Enviar",
-      "ubicacion": "Polonia",
+      "ubicacion": "bogota",
       "estado": "Disponible",
-      "created_at": "2025-11-29T19:57:51.568230Z",
-      "updated_at": "2025-11-29T19:57:51.568321Z"
+      "created_at": "2025-11-30T00:06:30.745815Z",
+      "updated_at": "2025-11-30T00:06:30.745842Z"
+    },
+    {
+      "id": 3,
+      "codigo": "0834",
+      "nombre": "chatarra oxidada",
+      "categoria": "Enviar",
+      "ubicacion": "caicerroña",
+      "estado": "Disponible",
+      "created_at": "2025-11-30T20:35:50.583467Z",
+      "updated_at": "2025-11-30T20:35:50.583499Z"
     }
   ],
   "prestamos": [
