@@ -264,13 +264,9 @@ Para realizar cambios:
 ## Licencia
 
 Este proyecto es desarrollado como parte del proyecto académico POE.
-por Sebastian Poloche Tellez & Juans
+por Sebastian-Poloche & Gap404
 
-## Contacto y Soporte
 
-Para consultas técnicas o reportes de errores, contactar al equipo de desarrollo.
-
-## Historial de Cambios
 
 ### Versión 1.0 (30 de Noviembre de 2025)
 
@@ -279,7 +275,6 @@ Para consultas técnicas o reportes de errores, contactar al equipo de desarroll
 - Sistema de respaldos automáticos
 - Interfaz gráfica Tkinter completa
 - API REST con validaciones robustas
-- Conformidad con RFP-IHEP-2025 al 99%
 
 ## Información Técnica Adicional
 
