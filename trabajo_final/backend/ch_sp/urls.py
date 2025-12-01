@@ -17,13 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from api.views.herramientas_views import Herramientas_ViewSet
-from api.views.prestamos_views import Prestamos_ViewSet
+from api.views.herramientas_views import HerramientasViewSet
+from api.views.prestamos_views import PrestamosViewSet
 
 
 router = DefaultRouter()
-router.register(r'herramientas', Herramientas_ViewSet, basename='herramientas')
-router.register(r'prestamos', Prestamos_ViewSet, basename='prestamos')
+router.register(r'herramientas', HerramientasViewSet, basename='herramientas')
+router.register(r'prestamos', PrestamosViewSet, basename='prestamos')
 
 app_name = 'api'
 

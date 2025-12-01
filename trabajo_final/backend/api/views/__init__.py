@@ -1,4 +1,4 @@
-from .herramientas_views import Herramientas_ViewSet
-from .prestamos_views import Prestamos_ViewSet
+from .herramientas_views import HerramientasViewSet
+from .prestamos_views import PrestamosViewSet
 
-__all__ = ['Herramientas_ViewSet', 'Prestamos_ViewSet']
+__all__ = ['HerramientasViewSet', 'PrestamosViewSet']
