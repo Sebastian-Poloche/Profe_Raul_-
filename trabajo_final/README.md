@@ -264,7 +264,7 @@ Para realizar cambios:
 ## Licencia
 
 Este proyecto es desarrollado como parte del proyecto académico POE.
-por Sebastian 
+por Sebastian Poloche Tellez & Juans
 
 ## Contacto y Soporte
 
