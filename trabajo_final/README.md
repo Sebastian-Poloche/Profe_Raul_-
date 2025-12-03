@@ -44,7 +44,11 @@ git clone https://github.com/Sebastian-Poloche/POE_/tree/main/trabajo_final
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate  # En Linux/Mac
-.venv\Scripts\activate     # En Windows
+.\.venv\Scripts\Activate.ps1  # En Windows
+en caso de error ejecutar primero el siguiente comando:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+y ejecutar nuevamente, .\.venv\Scripts\Activate.ps1
+    
 ```
 
 ### 3. Instalar Dependencias
