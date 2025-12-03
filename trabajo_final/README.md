@@ -61,34 +61,22 @@ pip install -r requirements.txt
 
 ```bash
 cd backend
+python makemigrations
 python manage.py migrate
 ```
 
-## Uso
-
-### Ejecución Automática (Recomendado)
-
-```bash
-python iniciar_ihep.py
-```
-
-Este comando inicia automáticamente:
-- Backend Django en http://127.0.0.1:8000
-- Frontend Tkinter en la interfaz gráfica local
-- Sistema de respaldos automáticos
 
 ### Ejecución Manual
 
 **Terminal 1 - Backend:**
 ```bash
 cd backend
-source ../.venv/bin/activate
 python manage.py runserver 127.0.0.1:8000
 ```
 
 **Terminal 2 - Frontend:**
 ```bash
-source .venv/bin/activate
+
 python main.py
 ```
 
